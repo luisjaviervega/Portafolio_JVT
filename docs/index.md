@@ -1,4 +1,4 @@
-# Documentación del Proyecto
+# Portafolio de evidencias Javier vega 
 
 Bienvenido 👋  
 Esta es una **plantilla** basada en [MkDocs](https://www.mkdocs.org/) + [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) para cursos y proyectos.
@@ -9,6 +9,6 @@ Esta es una **plantilla** basada en [MkDocs](https://www.mkdocs.org/) + [Materia
 
 1. **Edita el nombre del sitio** en `mkdocs.yml`:
    ```yaml
-   site_name: Documentación del Curso
-   theme:
+   site_name: Portafolio Ibero
+   theme: Sistemas Embebidos 
      name: material
