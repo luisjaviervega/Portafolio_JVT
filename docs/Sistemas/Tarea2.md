@@ -4,7 +4,7 @@
 En 4 LEDS debe mostrarse un contador del 0 al 15 en binario cada segundo
 
 ##Código:
-```python
+```c
 
 include "pico/stdlib.h"
 include "hardware/gpio.h"
