@@ -31,9 +31,37 @@ int main() {
 
 ```
 ##Barrido de leds
+include "pico/stdli-b.h"
+include "hardware/gpio.h"
+define A 0  
+define B 1  
+define C 2  
+define D 3
+define E 4  
+int main() {
+   const uint32_t MASK = (1u<<A) | (1u<<B) | (1u<<C) | (1u<<D) | (1u<<E);
+   gpio_init_mask(MASK);
+   gpio_set_dir_out_masked(MASK);  
+   gpio_clr_mask(MASK);            
+   while (true) {
+       for (int i = 0; i < 5; ++i) {
+           gpio_clr_mask(MASK);                
+           gpio_set_mask(1 << i);              
+           sleep_ms(300);
+       }
+       for (int i = 3; i > 0; --i) {
+           gpio_clr_mask(MASK);
+           gpio_set_mask(1 << i);
+           sleep_ms(300);
+       }
+   }
+}
 
+![Diagrama del sistema](T2E2.png)
 
+```
 
+```
 ##Secuencia en código grey
 
 include "pico/stdlib.h"
