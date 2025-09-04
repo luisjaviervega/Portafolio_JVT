@@ -27,6 +27,9 @@ int main() {
 }
  
 ```
+![Diagrama del sistema](T2E1.png)
+
+```
 ##Barrido de leds
 
 
@@ -59,3 +62,5 @@ int main() {
         }
     }
 }
+
+```
