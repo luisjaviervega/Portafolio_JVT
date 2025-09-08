@@ -56,7 +56,7 @@ int main() {
        }
    }
 }
-
+```
 ![Diagrama del sistema](T2E2.png)
 
 ```
@@ -90,5 +90,7 @@ int main() {
         }
     }
 }
+
+![Diagrama del sistema](grey.png)
 
 ```
