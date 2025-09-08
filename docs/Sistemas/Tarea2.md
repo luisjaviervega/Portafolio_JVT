@@ -61,8 +61,6 @@ int main() {
 ```
 ![Diagrama del sistema](T2E2.png)
 
-```
-
 ##Secuencia en código grey
 
 ```
@@ -96,9 +94,9 @@ int main() {
 ![Diagrama del sistema](grey.png)
 
 
-[Video:][doc-ref]
+[Video demostración:][doc-ref]
 
 [doc-ref]: https://www.youtube.com/shorts/lCM-7CqCMcQ 
-```
+
 
 

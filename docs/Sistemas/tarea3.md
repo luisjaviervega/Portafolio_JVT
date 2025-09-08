@@ -100,5 +100,75 @@ int main() {
 }
 
 ```
-##Esquemático de conexión: Se usó las mismas conexiones para las 3 diferentes compuertas.
+###Esquemático de conexión: Se usó las mismas conexiones para las 3 diferentes compuertas.
 ![Diagrama del sistema](ANDORXOR.png)
+
+##Selector cíclico de 4 LEDs con avance/retroceso
+
+###Que debe hacer: Mantén un único LED encendido entre LED0..LED3. Un botón AVANZA (0→1→2→3→0) y otro RETROCEDE (0→3→2→1→0). Un push = un paso (antirrebote por flanco: si dejas presionado no repite). En el video demuestra en ambos sentidos.
+
+```
+#include "pico/stdlib.h"
+
+#define BTN_PREV 0      
+#define BTN_NEXT 1    
+#define LED0   2
+#define LED1   3
+#define LED2   4
+#define LED3   5
+
+uint8_t STATE = LED0 - 1;
+
+int main(void) {
+    const uint8_t LEDs_M = (1u << LED0 | 1u << LED1 | 1u << LED2 | 1u << LED3);
+
+    gpio_init_mask(LEDs_M);
+    gpio_set_dir_out_masked(LEDs_M);
+    gpio_set_mask(LEDs_M);   
+    gpio_clr_mask(LEDs_M);
+
+    gpio_init(BTN_PREV);
+    gpio_set_dir(BTN_PREV, GPIO_IN);
+    gpio_pull_up(BTN_PREV);
+
+    gpio_init(BTN_NEXT);
+    gpio_set_dir(BTN_NEXT, GPIO_IN);
+    gpio_pull_up(BTN_NEXT);
+
+    bool NEXT_PREVSTATE = 1;
+    bool PREV_PREVSTATE = 1;
+
+    while (true) {
+        bool NEXT_STATE = !gpio_get(BTN_NEXT);
+        bool PREV_STATE = !gpio_get(BTN_PREV);
+
+        if (NEXT_STATE && !NEXT_PREVSTATE) {
+            if (STATE == LED3) {
+                STATE = LED0;
+            } else {
+                STATE ++;
+            }
+            gpio_clr_mask(LEDs_M);                
+            gpio_set_mask(1 << STATE);              
+        }
+
+        if (PREV_STATE && !PREV_PREVSTATE) {
+            if (STATE == LED0) {
+                STATE = LED3;
+            } else {
+                STATE --;
+            }
+            gpio_clr_mask(LEDs_M);                
+            gpio_set_mask(1 << STATE);              
+        }
+
+        NEXT_PREVSTATE = NEXT_STATE;
+        PREV_PREVSTATE = PREV_STATE;
+
+        sleep_ms(10);
+    }
+}
+```
+###Esquemático:
+
+![Diagrama del sistema](T3E2.png)
