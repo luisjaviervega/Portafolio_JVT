@@ -3,7 +3,7 @@
 ##Contador binario de bits
 En 4 LEDS debe mostrarse un contador del 0 al 15 en binario cada segundo
 
-##Código:
+###Códigos:
 ```
 
 include "pico/stdlib.h"
@@ -29,8 +29,10 @@ int main() {
 ```
 ![Diagrama del sistema](T2E1.png)
 
-```
 ##Barrido de leds
+
+```
+
 include "pico/stdli-b.h"
 include "hardware/gpio.h"
 define A 0  
@@ -61,9 +63,9 @@ int main() {
 
 ```
 
-```
 ##Secuencia en código grey
 
+```
 include "pico/stdlib.h"
 include "hardware/gpio.h"
  
@@ -93,4 +95,10 @@ int main() {
 
 ![Diagrama del sistema](grey.png)
 
+
+[Video:][doc-ref]
+
+[doc-ref]: https://www.youtube.com/shorts/lCM-7CqCMcQ 
 ```
+
+

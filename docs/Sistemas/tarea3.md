@@ -2,7 +2,7 @@
 ##3 compuertas básicas, AND / OR / XOR con 2 botones
 Qué debe hacer: Con dos botones A y B (pull-up; presionado=0) enciende tres LEDs que muestren en paralelo los resultados de AND, OR y XOR. En el video muestra las 4 combinaciones (00, 01, 10, 11).
 
-##Código: Para compuerta AND
+###Código: Para compuerta AND
 
 ```
 #include "pico/stdlib.h"
@@ -39,7 +39,7 @@ int main() {
 }
 
 ```
-##Código: Para compuerta OR
+###Código: Para compuerta OR
 
 ```
 
@@ -70,7 +70,7 @@ int main() {
 }
 
 ```
-##Código: Para compuerta XOR
+###Código: Para compuerta XOR
 
 ```
 #include "pico/stdlib.h"
