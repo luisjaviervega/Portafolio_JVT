@@ -1,10 +1,12 @@
 #Inputs
 ##3 compuertas básicas, AND / OR / XOR con 2 botones
-Qué debe hacer: Con dos botones A y B (pull-up; presionado=0) enciende tres LEDs que muestren en paralelo los resultados de AND, OR y XOR. En el video muestra las 4 combinaciones (00, 01, 10, 11).
+Qué debe hacer:
+
+ Con dos botones A y B (pull-up; presionado=0) enciende tres LEDs que muestren en paralelo los resultados de AND, OR y XOR. En el video muestra las 4 combinaciones (00, 01, 10, 11).
 
 ###Código: Para compuerta AND
 
-```
+```c
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
@@ -41,7 +43,7 @@ int main() {
 ```
 ###Código: Para compuerta OR
 
-```
+```c
 
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -72,7 +74,7 @@ int main() {
 ```
 ###Código: Para compuerta XOR
 
-```
+```c
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
@@ -100,14 +102,19 @@ int main() {
 }
 
 ```
-###Esquemático de conexión: Se usó las mismas conexiones para las 3 diferentes compuertas.
+###Esquemático de conexión:
+
+ Se usó las mismas conexiones para las 3 diferentes compuertas.
+
 ![Diagrama del sistema](ANDORXOR.png)
 
 ##Selector cíclico de 4 LEDs con avance/retroceso
 
-###Que debe hacer: Mantén un único LED encendido entre LED0..LED3. Un botón AVANZA (0→1→2→3→0) y otro RETROCEDE (0→3→2→1→0). Un push = un paso (antirrebote por flanco: si dejas presionado no repite). En el video demuestra en ambos sentidos.
+###Que debe hacer: 
 
-```
+Mantén un único LED encendido entre LED0..LED3. Un botón AVANZA (0→1→2→3→0) y otro RETROCEDE (0→3→2→1→0). Un push = un paso (antirrebote por flanco: si dejas presionado no repite). En el video demuestra en ambos sentidos.
+
+```c
 #include "pico/stdlib.h"
 
 #define BTN_PREV 0      
