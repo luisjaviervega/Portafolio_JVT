@@ -1,6 +1,6 @@
 #Inputs
 ##3 compuertas básicas, AND / OR / XOR con 2 botones
-Qué debe hacer:
+###Qué debe hacer:
 
  Con dos botones A y B (pull-up; presionado=0) enciende tres LEDs que muestren en paralelo los resultados de AND, OR y XOR. En el video muestra las 4 combinaciones (00, 01, 10, 11).
 
@@ -41,6 +41,10 @@ int main() {
 }
 
 ```
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtube.com/shorts/Al4uy3-YmbE?feature=share
+
 ###Código: Para compuerta OR
 
 ```c
@@ -72,6 +76,12 @@ int main() {
 }
 
 ```
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtube.com/shorts/1P4SH7KxhFU
+
+
 ###Código: Para compuerta XOR
 
 ```c
@@ -102,6 +112,12 @@ int main() {
 }
 
 ```
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtube.com/shorts/eoCzc6YgBfI
+
+
 ###Esquemático de conexión:
 
  Se usó las mismas conexiones para las 3 diferentes compuertas.
@@ -113,6 +129,8 @@ int main() {
 ###Que debe hacer: 
 
 Mantén un único LED encendido entre LED0..LED3. Un botón AVANZA (0→1→2→3→0) y otro RETROCEDE (0→3→2→1→0). Un push = un paso (antirrebote por flanco: si dejas presionado no repite). En el video demuestra en ambos sentidos.
+
+###Código
 
 ```c
 #include "pico/stdlib.h"
@@ -179,3 +197,8 @@ int main(void) {
 ###Esquemático:
 
 ![Diagrama del sistema](T3E2.png)
+
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtube.com/shorts/-E7wB8Z-OBw

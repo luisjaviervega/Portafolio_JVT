@@ -30,6 +30,10 @@ int main() {
 ```
 ![Diagrama del sistema](T2E1.png)
 
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtube.com/shorts/r_rv_efIPUs
+
 ##Barrido de leds
 
 ###Código:
@@ -64,6 +68,11 @@ int main() {
 }
 ```
 ![Diagrama del sistema](T2E2.png)
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtu.be/VObCDqgfttQ
+
 
 ##Secuencia en código grey
 
