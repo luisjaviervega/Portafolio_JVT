@@ -1,4 +1,4 @@
-#Comparación de microcontroladores 
+#T1 Comparación de microcontroladores 
 | Microcontroladores | MSP430F2617TPM                             | ESP32                                   | RP2040                 | STM32F407VG         |
 |--------------------|--------------------------------------------|-----------------------------------------|------------------------|---------------------|
 | Periféricos        | Brown-out Detect/Reset, DMA, POR, PWM, WDT | PWM, ADC 12 BITS, DAC 8 BITS            | PWM, UART, ADC, SPI    | 3x ADC, 2x DAC, 17x Timers |

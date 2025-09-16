@@ -1,4 +1,4 @@
-#Inputs
+#T3 Inputs
 ##3 compuertas básicas, AND / OR / XOR con 2 botones
 ###Qué debe hacer:
 

@@ -1,4 +1,4 @@
-#Outputs básicos
+#T2 Outputs básicos
 
 ##Contador binario de bits
 En 4 LEDS debe mostrarse un contador del 0 al 15 en binario cada segundo
