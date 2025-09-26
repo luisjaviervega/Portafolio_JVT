@@ -8,3 +8,4 @@
 
 [Descargar especificación (PDF)](rana12.pdf)
  
+#Marco “real-ganar-vale la pena” aplicado a RANA
