@@ -9,3 +9,16 @@
 [Descargar especificación (PDF)](rana12.pdf)
  
 #Marco “real-ganar-vale la pena” aplicado a RANA
+
+Portafolio_JVT/
+├─ docs/
+│  ├─ index.md
+│  ├─ about.md
+│  ├─ Marco_real_ganar_vale_la_pena.pdf
+├─ mkdocs.yml
+
+
+[Descargar el documento (PDF)](Marco_real_ganar_vale_la_pena.pdf)
+
+
+
