@@ -83,7 +83,11 @@ int main() {
 
 ##Esquemático
 
-##Video
+##Video de muestra:
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtu.be/gje9RdGbTqA
 
 
 ##Ejercicio7.2 Melodia con buzzer
@@ -214,3 +218,9 @@ int main() {
 ```
 
 ![Diagrama del sistema](T7.2.jpg)
+
+##Video de muestra:
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtu.be/zC1VOr3whbY
