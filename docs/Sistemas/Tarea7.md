@@ -18,114 +18,66 @@ Circuito
 
 
 ```c
- 
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
-#include <stdio.h>
  
-#define PWM_PIN     0
-#define AIN1_PIN    1
-#define AIN2_PIN    2
-#define STBY_PIN    3
-#define BTN_INC_PIN 4
-#define BTN_DEC_PIN 5
- 
+#define PWMA   0  
+#define AIN1   1  
+#define STBY   3  
+#define F_PWM_HZ 2000   
+#define TOP 1023  
+#define BTN_LOW 4
+#define BTN_HIGH 5
 
-#define PWM_WRAP 625u
-#define PWM_CLKDIV 10.0f
- 
-
-#define DUTY_LOW_PCT  30.0f
-#define DUTY_MED_PCT  60.0f
-#define DUTY_HIGH_PCT 90.0f
- 
-
-#define DEBOUNCE_MS 50
- 
-
-static uint slice_num;
-static uint chan;
-static uint32_t duty_vals[3];
- 
-
-static void pwm_init_for_pin(uint gpio_pin) {
-    gpio_set_function(gpio_pin, GPIO_FUNC_PWM);
-    slice_num = pwm_gpio_to_slice_num(gpio_pin);
-    chan = pwm_gpio_to_channel(gpio_pin);
-    pwm_set_wrap(slice_num, PWM_WRAP);
-    pwm_set_clkdiv(slice_num, PWM_CLKDIV);
-    pwm_set_chan_level(slice_num, chan, 0);
-    pwm_set_enabled(slice_num, true);
-}
- 
-static bool button_pressed_once(uint gpio_pin) {
-    static absolute_time_t last_time_inc = {0};
-    static absolute_time_t last_time_dec = {0};
-    absolute_time_t *last_time = (gpio_pin == BTN_INC_PIN) ? &last_time_inc : &last_time_dec;
- 
-    if (gpio_get(gpio_pin) == 0) {
-        absolute_time_t now = get_absolute_time();
-        if (absolute_time_diff_us(*last_time, now) < (DEBOUNCE_MS * 1000)) return false;
-        sleep_ms(10);
-        if (gpio_get(gpio_pin) == 0) {
-            *last_time = make_timeout_time_ms(DEBOUNCE_MS);
-            while (gpio_get(gpio_pin) == 0) sleep_ms(5);
-            return true;
-        }
-    }
-    return false;
-}
- 
+#define DUTY_LOW  (TOP*30/100)
+#define DUTY_HIGH (TOP*75/100)
 
 int main() {
+
     stdio_init_all();
  
+    gpio_init(AIN1);
 
-    gpio_init(AIN1_PIN); gpio_set_dir(AIN1_PIN, GPIO_OUT);
-    gpio_init(AIN2_PIN); gpio_set_dir(AIN2_PIN, GPIO_OUT);
-    gpio_init(STBY_PIN); gpio_set_dir(STBY_PIN, GPIO_OUT);
+    gpio_set_dir(AIN1, GPIO_OUT);
  
-    gpio_init(BTN_INC_PIN); gpio_set_dir(BTN_INC_PIN, GPIO_IN); gpio_pull_up(BTN_INC_PIN);
-    gpio_init(BTN_DEC_PIN); gpio_set_dir(BTN_DEC_PIN, GPIO_IN); gpio_pull_up(BTN_DEC_PIN);
+    gpio_set_function(PWMA, GPIO_FUNC_PWM);
 
+    uint slice = pwm_gpio_to_slice_num(PWMA);
+    uint chan  = pwm_gpio_to_channel(PWMA);
 
-    pwm_init_for_pin(PWM_PIN);
- 
+    gpio_init(BTN_LOW);
+    gpio_set_dir(BTN_LOW, GPIO_IN);
+    gpio_pull_up(BTN_LOW);
 
-    duty_vals[0] = (uint32_t)((DUTY_LOW_PCT / 100.0f) * (float)(PWM_WRAP + 1));
-    duty_vals[1] = (uint32_t)((DUTY_MED_PCT / 100.0f) * (float)(PWM_WRAP + 1));
-    duty_vals[2] = (uint32_t)((DUTY_HIGH_PCT / 100.0f) * (float)(PWM_WRAP + 1));
- 
-    int speed_idx = 0;
- 
+    gpio_init(BTN_HIGH);
+    gpio_set_dir(BTN_HIGH, GPIO_IN);
+    gpio_pull_up(BTN_HIGH);
 
-    gpio_put(AIN1_PIN, 1);
-    gpio_put(AIN2_PIN, 0);
- 
-    
-    gpio_put(STBY_PIN, 1);
+    float f_clk = 150000000.0f; 
 
+    float div = f_clk / (10000 * (TOP + 1));
 
-    pwm_set_chan_level(slice_num, chan, duty_vals[speed_idx]);
+    pwm_set_clkdiv(slice, div);
+
+    pwm_set_wrap(slice, TOP);
+
+    pwm_set_chan_level(slice, chan, 0);
+
+    pwm_set_enabled(slice, true);
  
-    printf("Control motor iniciado. PWM pin: %d\n", PWM_PIN);
- 
-    while (true) {
-        if (button_pressed_once(BTN_INC_PIN)) {
-            speed_idx = (speed_idx + 1) % 3;
-            pwm_set_chan_level(slice_num, chan, duty_vals[speed_idx]);
-            printf("Velocidad -> %d (level=%u)\n", speed_idx, (unsigned)duty_vals[speed_idx]);
+    while (1) {
+
+     if (!gpio_get(BTN_LOW)) {
+            pwm_set_chan_level(slice, chan, DUTY_LOW);
         }
-        if (button_pressed_once(BTN_DEC_PIN)) {
-            speed_idx = (speed_idx + 2) % 3; 
-            pwm_set_chan_level(slice_num, chan, duty_vals[speed_idx]);
-            printf("Velocidad -> %d (level=%u)\n", speed_idx, (unsigned)duty_vals[speed_idx]);
+        if (!gpio_get(BTN_HIGH)) {
+            pwm_set_chan_level(slice, chan, DUTY_HIGH);
         }
-        sleep_ms(20);
+        sleep_ms(50);
     }
- 
-    return 0;
 }
+
+
  
 ``` 
 
