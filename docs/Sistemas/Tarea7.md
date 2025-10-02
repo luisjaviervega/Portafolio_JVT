@@ -138,6 +138,12 @@ int main() {
 
 ##Instrucciones:
 
+Programar un buzzer piezoeléctrico para reproducir una melodía reconocible.
+
+Variar la frecuencia del PWM para las notas, manteniendo el duty en 50 %.
+
+Cada nota debe incluir su frecuencia y duración en el código.
+
 ```c
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
@@ -254,3 +260,5 @@ int main() {
     return 0;
 }
 ```
+
+![Diagrama del sistema](T7.2.jpg)
