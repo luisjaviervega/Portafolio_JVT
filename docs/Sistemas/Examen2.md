@@ -84,52 +84,55 @@ Reemplazar (alias: replace, reemplazar)
 **INFO IMPORTANTE:** El movimiento de un servo requiere alimentacion 5-6v y en el pin de signal, un pwm a 50 HZ con un pulso de 1-2ms que representa 0-180 grados.
  
 3) **Codigo:**
-```
+``` c
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 #include <string>
  
+using namespace std;
+ 
+//CONFIGURACIÓN UART Y PINES
 #define UART_ID uart0
 #define BAUD_RATE 115200
 #define UART_TX_PIN 0
 #define UART_RX_PIN 1
  
 #define SERVO_PIN 2
-const uint BTNMODE = 3; // Step botones
+const uint BTNMODE = 3;
 const uint BTNNEXT = 4;
-const uint BTNPREV = 5; // Botón cambio de modo
+const uint BTNPREV = 5;
  
-using namespace std;
  
-// Lista global
 int valores_guardados[3] = {0, 0, 0};
  
-// BORRAR LISTA
+ 
 void borrar_lista() {
     for (int i = 0; i < 3; i++) valores_guardados[i] = 0;
     printf("Lista borrada.\n");
 }
- 
  
 uint16_t angle_to_level(uint16_t angle) {
     float pulse_us = 1000.0f + (angle * 1000.0f / 180.0f);
     return (uint16_t)((pulse_us / 20000.0f) * 65535);
 }
  
+// main
 int main() {
     stdio_init_all();
     sleep_ms(2000);
  
     printf("Modo de entrenamiento activado\n");
-    printf("Escribe (write), reemplazar(replace), y borrar(clear) para opciones");
+    printf("Escribe (write), reemplazar(replace), y borrar(clear) para opciones\n");
  
+    // Inicialización UART
     uart_init(UART_ID, BAUD_RATE);
     gpio_set_function(UART_TX_PIN, GPIO_FUNC_UART);
     gpio_set_function(UART_RX_PIN, GPIO_FUNC_UART);
     uart_set_format(UART_ID, 8, 1, UART_PARITY_NONE);
     uart_set_fifo_enabled(UART_ID, true);
  
+    // PWM (Servo)
     gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
     uint slice = pwm_gpio_to_slice_num(SERVO_PIN);
     uint chan  = pwm_gpio_to_channel(SERVO_PIN);
@@ -139,18 +142,19 @@ int main() {
     pwm_set_clkdiv(slice, div);
     pwm_set_enabled(slice, true);
  
- 
+    // --- Configuración de botones ---
     gpio_init(BTNMODE); gpio_set_dir(BTNMODE, GPIO_IN); gpio_pull_up(BTNMODE);
     gpio_init(BTNNEXT); gpio_set_dir(BTNNEXT, GPIO_IN); gpio_pull_up(BTNNEXT);
     gpio_init(BTNPREV); gpio_set_dir(BTNPREV, GPIO_IN); gpio_pull_up(BTNPREV);
  
-    // Variables de control
+    // --- Variables de control ---
     string mensaje_usb = "", mensaje_uart = "";
-    int modo_index = 0;      // índice para step
+    int modo_index = 0;
     int modo_actual = 1;     // 1: write, 2: continuo, 3: step
     bool btnmode_presionado = false, btnnext_presionado = false, btnprev_presionado = false;
     bool ciclo_activo = false;
  
+    // ==== BUCLE PRINCIPAL ====
     while (true) {
         // --- Lectura USB ---
         int ch = getchar_timeout_us(0);
@@ -159,9 +163,8 @@ int main() {
                 if (!mensaje_usb.empty()) {
                     string comando = mensaje_usb;
  
-                   
+                    // ---- MODO WRITE ----
                     if (comando == "write" || comando == "escribir" || comando == "Write" || comando == "Escribir") {
- 
                         printf("Ingresa 3 valores separandolas por comas (ej: 10,20,30):\n");
                         string entrada_valores = "";
                         while (true) {
@@ -195,11 +198,13 @@ int main() {
                         else if (error) printf("Error, valores de 0 a 180\n");
                         else printf("Valores guardados: %d, %d, %d\n", valores_guardados[0], valores_guardados[1], valores_guardados[2]);
                     }
-                    // CLEAR
+ 
+                    // ---- MODO CLEAR ----
                     else if (comando == "clear" || comando == "borrar" || comando == "Clear" || comando == "Borrar") {
                         borrar_lista();
                     }
-                    // REPLACE
+ 
+                    // ---- MODO REPLACE ----
                     else if (comando == "replace" || comando == "reemplazar" || comando == "Replace" || comando == "Reemplazar") {
                         printf("Formato: Replace:posicion,valor (ej: Replace:1,130)\n");
                         string entrada_replace = "";
@@ -236,16 +241,16 @@ int main() {
         // --- Lectura botones ---
         bool bmode = gpio_get(BTNMODE)==0, bnext = gpio_get(BTNNEXT)==0, bprev = gpio_get(BTNPREV)==0;
  
-        // Cambio de modo
+        // ---- Cambio de modo ----
         if (bprev && !btnprev_presionado) {
             modo_actual++;
             if (modo_actual>3) modo_actual=1;
-            printf("Cambio de modo %d\n", modo_actual);
-            ciclo_activo = (modo_actual==3); // ciclo activo solo en modo continuo
+            printf("Cambio a modo %d\n", modo_actual);
+            ciclo_activo = (modo_actual==3);
             btnprev_presionado=true;
         } else if (!bprev) btnprev_presionado=false;
  
-        // Modo step
+        // ---- Modo step ----
         if (modo_actual==2) {
             if (bmode && !btnmode_presionado) {
                 if (modo_index>0) modo_index--;
@@ -262,7 +267,7 @@ int main() {
             } else if (!bnext) btnnext_presionado=false;
         }
  
-        // Modo continuo
+        // ---- Modo continuo ----
         if (modo_actual==3 && ciclo_activo) {
             bool vacia = (valores_guardados[0]==0 && valores_guardados[1]==0 && valores_guardados[2]==0);
             if (vacia) {
@@ -274,7 +279,7 @@ int main() {
                     printf("pos%d: %d\n", i+1, valores_guardados[i]);
                     for (int t=0;t<15;t++) {
                         sleep_ms(100);
-                        if (!ciclo_activo) break;  
+                        if (!ciclo_activo) break;
                     }
                     if (!ciclo_activo) break;
                 }
@@ -284,6 +289,7 @@ int main() {
         sleep_ms(10);
     }
 }
+ 
 ```
  
 4) **Esquematico de conexion:**
