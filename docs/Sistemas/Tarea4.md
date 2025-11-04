@@ -1,4 +1,4 @@
-#T4 LED Pong
+#T4
 
 ##Que debe hacer: 
 

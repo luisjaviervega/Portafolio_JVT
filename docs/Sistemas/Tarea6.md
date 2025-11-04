@@ -1,4 +1,4 @@
-#T6 Actualización LED pong
+#T6
 
 ##Ejercicio 1
 

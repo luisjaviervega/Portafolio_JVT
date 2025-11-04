@@ -1,4 +1,4 @@
-# 📚 **Tarea 8**
+# T8
  
 ## **Introducción**
  
