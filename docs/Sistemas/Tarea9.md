@@ -45,7 +45,11 @@ int main() {
 
 ```
 
-![Video demostración](Luxometro.mp4)
+![Esquemático](fotor.jpg)
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtu.be/VtgWAUczVmI
 
 
 ### **Ejercicio 9.2**
@@ -104,3 +108,9 @@ int main() {
 }
  
 ```
+
+![Esquemático](Servo.jpg)
+
+[Video demostración:][doc-ref]
+
+[doc-ref]:https://youtu.be/L8Vw-Pges6I
