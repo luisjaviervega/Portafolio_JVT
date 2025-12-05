@@ -15,6 +15,16 @@
 
 [Descargar el documento (PDF)](rana12.pdf)
  
+#Análisis de mi producto
+
+
+<object data="../recursos/archivos/rana2.pdf" type="application/pdf" width="100%" height="600">
+  <p> <a href="../recursos/archivos/rana2.pdf"></a></p>
+</object>
+
+
+[Descargar el documento (PDF)](rana2.pdf)
+
 #Marco “real-ganar-vale la pena” aplicado a RANA
 
 
@@ -27,6 +37,7 @@
 <object data="Marco_real_ganar_vale_la_pena.pdf" type="application/pdf" width="100%" height="600">
   <p> <a href="Marco_real_ganar_vale_la_pena.pdf"></a></p>
 </object>
+
 
 ##Modelo de canvas
 
@@ -81,6 +92,13 @@
 | **Canales**              | - Presentaciones en la universidad o laboratorios.<br> - Redes sociales o blog del proyecto para mostrar resultados.<br> - Ferias estudiantiles de innovación o medio ambiente.<br> - Pruebas y demostraciones directas en estanques o laboratorios. |
 | **Socios**               | - Profesores y compañeros que asesoren en diseño y pruebas.<br> - Laboratorios universitarios para construcción y testeo.<br> - Proveedores de componentes accesibles.<br> - Comunidades que permitan probar el robot en sus estanques. |
 
+#Diagrama de Gantt 
+
+[Descargar documento (PDF)](RANAGANTT (1).pdf)
+
+<object data="../recursos/archivos/RANAGANTT (1).pdf" type="application/pdf" width="100%" height="600">
+  <p>. <a href="../recursos/archivos/RANAGANTT (1).pdf"></a></p>
+</object> 
 
 ##Presentación Shark Tank
 
