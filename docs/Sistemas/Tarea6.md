@@ -1,4 +1,4 @@
-#T6
+#Tarea 6
 
 ##Ejercicio 1
 

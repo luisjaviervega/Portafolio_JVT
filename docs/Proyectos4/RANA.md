@@ -24,9 +24,9 @@ Presentación RANA:
 
 [Descargar el documento (PDF)](Marco_real_ganar_vale_la_pena.pdf)
 
-<iframe src="Marco_real_ganar_vale_la_pena.pdf" width="100%" height="600px"></iframe>
-
-<embed src="Marco_real_ganar_vale_la_pena.pdf" type="application/pdf" width="100%" height="600px" />
+<object data="Marco_real_ganar_vale_la_pena.pdf" type="application/pdf" width="100%" height="600">
+  <p>No se pudo mostrar el PDF. <a href="Marco_real_ganar_vale_la_pena.pdf">Descargar</a></p>
+</object>
 
 ##Modelo de canvas
 

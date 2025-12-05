@@ -1,4 +1,4 @@
-#T3
+#Tarea 3
 
 ##3 compuertas básicas, AND / OR / XOR con 2 botones
 ###Qué debe hacer:

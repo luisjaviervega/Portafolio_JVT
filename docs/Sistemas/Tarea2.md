@@ -1,4 +1,4 @@
-#T2
+#Tarea 2
 
 ##Contador binario de bits
 En 4 LEDS debe mostrarse un contador del 0 al 15 en binario cada segundo

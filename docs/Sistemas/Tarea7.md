@@ -1,4 +1,4 @@
-#T7
+#Tarea 7
 
 ##Ejercicio7.1 PWM
 
