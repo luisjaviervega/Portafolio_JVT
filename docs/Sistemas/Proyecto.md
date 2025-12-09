@@ -20,8 +20,7 @@ El micromouse fue practicado en una protoboard para probar funcionamiento de mot
 
 - *Prueba de motores y sensores*
 
-´´´ c
-
+``` c
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
@@ -116,13 +115,12 @@ int main() {
     }
 }
 
-´´´ 
+``` 
 
 - *Prueba de sensores*
 
 
-´´´ c
-
+``` c
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
@@ -182,7 +180,7 @@ int main() {
     return 0;
 }
 
-´´´
+```
 
 3) *Esquematico de conexion:*
 ![Esquema de conexión](MP1.png)
