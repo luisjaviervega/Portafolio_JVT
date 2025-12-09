@@ -107,3 +107,13 @@
 <object data="../recursos/archivos/ppRana.pdf" type="application/pdf" width="100%" height="600">
   <p>. <a href="../recursos/archivos/ppRana.pdf"></a></p>
 </object> 
+
+###Documento final RANA
+
+Marco real ganar vale la pena:
+
+[Descargar especificación (PDF)](Entrega Final proyectos 4 (RANA).pdf)
+
+<object data="../recursos/archivos/Entrega Final proyectos 4 (RANA).pdf" type="application/pdf" width="100%" height="600">
+  <p>. <a href="../recursos/archivos/Entrega Final proyectos 4 (RANA).pdf"></a></p>
+</object> 
