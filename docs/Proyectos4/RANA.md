@@ -110,7 +110,6 @@
 
 ###Documento final RANA
 
-Marco real ganar vale la pena:
 
 [Descargar especificación (PDF)](Entrega Final proyectos 4 (RANA).pdf)
 
